@@ -1,8 +1,8 @@
 <?php
-$host = 'interchange.proxy.rlwy.net';
-$port = 53896;
+$host = 'maglev.proxy.rlwy.net';
+$port = 35682;
 $user = 'root';
-$password = 'rafaganteng123';
+$password = 'RQDnCUbLBvpLHlbgfDDGuORKVjFOznhB';
 $database = 'railway';
 
 $mysqli = new mysqli($host, $user, $password, $database, $port);
@@ -10,13 +10,13 @@ $mysqli = new mysqli($host, $user, $password, $database, $port);
 if ($mysqli->connect_error) {
     die("Koneksi gagal: " . $mysqli->connect_error);
 }
-echo "Koneksi berhasil!<br><br>";
+echo "✅ Koneksi berhasil!<br><br>";
 
-// Ambil semua tabel
+// Cek semua tabel
 $result = $mysqli->query("SHOW TABLES");
 
 if ($result) {
-    echo "<b>Daftar tabel:</b><br>";
+    echo "<b>Daftar tabel di database:</b><br>";
     $tableNameToDelete = 'pkk-ecommerce';
     $found = false;
 
@@ -27,21 +27,21 @@ if ($result) {
         }
     }
 
-    // Jika tabel ditemukan, hapus
+    // Jika ditemukan, hapus tabel
     if ($found) {
-        $dropResult = $mysqli->query("DROP TABLE `$tableNameToDelete`");
-        if ($dropResult) {
-            echo "<br>Tabel <b>$tableNameToDelete</b> berhasil dihapus.";
+        $drop = $mysqli->query("DROP TABLE `$tableNameToDelete`");
+        if ($drop) {
+            echo "<br>🗑️ Tabel <b>$tableNameToDelete</b> berhasil dihapus.";
         } else {
-            echo "<br>Gagal menghapus tabel <b>$tableNameToDelete</b>: " . $mysqli->error;
+            echo "<br>❌ Gagal menghapus tabel <b>$tableNameToDelete</b>: " . $mysqli->error;
         }
     } else {
-        echo "<br><br>Tabel <b>$tableNameToDelete</b> tidak ditemukan.";
+        echo "<br><br>ℹ️ Tabel <b>$tableNameToDelete</b> tidak ditemukan.";
     }
 
     $result->free();
 } else {
-    echo "Gagal mengambil daftar tabel: " . $mysqli->error;
+    echo "❌ Gagal mengambil daftar tabel: " . $mysqli->error;
 }
 
 $mysqli->close();
