@@ -1,0 +1,4 @@
+{
+  "build": "echo 'No build step required for PHP'",
+  "start": "php -S 0.0.0.0:$PORT"
+}
