@@ -1,3 +1,2 @@
 <?php
-php.info();
-?>
+echo "Hello from Railway!";
